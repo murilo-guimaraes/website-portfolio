@@ -1,0 +1,268 @@
+:root {
+    --primary: #003366; /* Azul Anhanguera */
+    --accent: #003366;  /* No modo claro, o destaque também é Azul */
+    --bg: #f8f9fa;
+    --text: #333;
+    --white: #ffffff;
+}
+
+/* Configuração do Modo Escuro */
+body.dark-mode {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --white: #1e1e1e;
+    --primary: #F26522; /* No escuro, a cor primária vira Laranja */
+    --accent: #F26522;  /* No escuro, o destaque vira Laranja */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+
+/* Botão Modo Escuro */
+#dark-mode-toggle {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+/* Navegação */
+nav {
+    background: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; align-items: center; }
+nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+
+
+/* Header */
+header {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--primary), #001f3d);
+    color: white;
+    text-align: center;
+}
+
+h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.subtitle { opacity: 0.9; font-size: 1.1rem; }
+
+.badges { margin-top: 15px; }
+.badges span {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 0 5px;
+}
+
+/* Seções */
+section { padding: 50px 0; border-bottom: 1px solid rgba(128,128,128,0.3); }
+h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(128,128,128,0.2);
+    transition: transform 0.3s ease;
+}
+.card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.tag {
+    display: inline-block;
+    background: rgba(242, 101, 34, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-top: 10px;
+    color: var(--accent);
+}
+.habilidades-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.skill-tag {
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.skill-tag:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+/* Botão Voltar ao Topo */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+/* Estado inicial: invisível e um pouco abaixo */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Estado final: visível e na posição correta */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Container do slider com largura controlada */
+.slider-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px; /* Espaço menor entre os cards */
+    padding: 10px 0 20px 0;
+}
+
+/* Cards mais estreitos */
+.slider .card {
+    min-width: 260px; /* Reduzi de 320px para 260px */
+    max-width: 280px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.slider:active {
+    cursor: grabbing; /* Ícone de mão fechada ao clicar */
+    scroll-behavior: auto; /* Desativa o smooth momentaneamente para o arrasto ser instantâneo */
+}
+
+/* Deixando a barra de rolagem mais visível para facilitar o controle */
+.slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.slider::-webkit-scrollbar-track {
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 10px;
+}
+/* Botão de Expandir */
+/* Botão Detalhes mais destacado */
+.expand-btn {
+    background: var(--accent); /* Laranja no claro, Azul no escuro (conforme configuramos) */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%; /* Ocupa a largura do card */
+    transition: transform 0.2s, background 0.3s;
+}
+
+.expand-btn:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+.expand-btn span {
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+}
+
+/* Ajuste no conteúdo extra para ser mais limpo */
+.extra-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); /* Animação mais natural */
+    background: rgba(128, 128, 128, 0.05);
+    border-radius: 5px;
+}
+
+.extra-content.open {
+    max-height: 1000px; /* Valor alto para garantir que mostre tudo */
+    margin-top: 15px;
+    padding: 15px;
+}
+
+/* Botão "Ver" (Redirecionamento) */
+.view-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--primary);
+    color: white;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    background: var(--accent);
+    transform: scale(1.05);
+}
+
+/* Contato */
+.contato-links a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+footer { text-align: center; padding: 40px; font-size: 0.8rem; opacity: 0.6; }
