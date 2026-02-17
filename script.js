@@ -1,8 +1,8 @@
-// --- 1. CONFIGURAÇÕES GERAIS E MODO ESCURO ---
 const body = document.body;
 const btnDark = document.getElementById('dark-mode-toggle');
 const nameTitle = document.querySelector('h1');
 
+// --- MODO ESCURO ---
 if (localStorage.getItem('dark-mode') === 'enabled') {
     body.classList.add('dark-mode');
 }
@@ -10,18 +10,17 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
 btnDark?.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     if (nameTitle) {
-        nameTitle.style.transform = 'scale(1.02)';
+        nameTitle.style.transform = 'scale(1)';
         setTimeout(() => nameTitle.style.transform = 'scale(1)', 150);
     }
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
 });
 
-// --- 2. SUMÁRIO (CLIQUE E NAVEGAÇÃO) ---
+// --- NAVEGAÇÃO E SUMÁRIO ---
 const setupSumario = () => {
     const details = document.getElementById('sumario-dropdown');
     let isDraggingMenu = false;
 
-    // Impede que os links fiquem "presos" no mouse (fantasma de arrastar)
     document.querySelectorAll('.dropdown-content a').forEach(link => {
         link.setAttribute('draggable', 'false');
     });
@@ -49,27 +48,19 @@ const setupSumario = () => {
     });
 };
 
-// --- 3. FILTROS DE PROJETOS E PESQUISAS ---
+// --- FILTROS DE PROJETOS ---
 window.filterItems = function(category, btn) {
-    // Remove ativo de todos os botões de filtro
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    // Adiciona ativo no botão clicado
     btn.classList.add('active');
 
-    // Filtra os cards no slider
     document.querySelectorAll('.slider .card').forEach(card => {
         const isMatch = category === 'todos' || card.classList.contains(category);
-        if (isMatch) {
-            card.classList.remove('hidden');
-            card.style.display = "block"; // Garante visibilidade
-        } else {
-            card.classList.add('hidden');
-            card.style.display = "none";
-        }
+        card.style.display = isMatch ? "block" : "none";
+        isMatch ? card.classList.remove('hidden') : card.classList.add('hidden');
     });
 };
 
-// --- 4. INTERFACE E SCROLL (PARALLAX E TOPO) ---
+// --- EFEITOS DE SCROLL (PARALLAX E TOPO) ---
 const backToTop = document.getElementById('back-to-top');
 
 window.addEventListener('scroll', () => {
@@ -78,12 +69,11 @@ window.addEventListener('scroll', () => {
     
     if (headerContainer) {
         const startMovingAt = window.innerWidth < 768 ? 150 : 50;
-        if (scrollValue > startMovingAt) {
-            headerContainer.style.transform = `translateY(${(scrollValue - startMovingAt) * 0.3}px)`;
-        } else {
-            headerContainer.style.transform = `translateY(0px)`;
-        }
+        headerContainer.style.transform = scrollValue > startMovingAt 
+            ? `translateY(${(scrollValue - startMovingAt) * 0.3}px)` 
+            : `translateY(0px)`;
     }
+    
     if (backToTop) {
         backToTop.style.display = scrollValue > 300 ? "flex" : "none";
     }
@@ -94,7 +84,7 @@ backToTop?.addEventListener('click', (e) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// --- 5. CONTROLE DOS CARDS (EXPANDIR) ---
+// --- CONTROLE DE EXPANSÃO DE CARDS ---
 const updateBtnStyle = (btn, isOpen) => {
     if (!btn) return;
     btn.innerHTML = isOpen ? 'Fechar <span>▲</span>' : 'Detalhes <span>▼</span>';
@@ -124,7 +114,7 @@ window.toggleAll = function() {
     if (masterBtn) masterBtn.innerText = anyClosed ? 'Recolher Tudo' : 'Expandir Tudo';
 };
 
-// --- 6. SISTEMA DE ARRASTE (COM TRAVA DE SELEÇÃO) ---
+// --- SCROLL DRAG PARA SLIDERS, TABELAS E DROPDOWNS ---
 const scrollContainers = document.querySelectorAll('.slider, .table-container, .dropdown-content');
 
 scrollContainers.forEach(container => {
@@ -134,10 +124,7 @@ scrollContainers.forEach(container => {
     container.addEventListener('mousedown', (e) => {
         isDown = true;
         container.classList.add('dragging');
-        
-        // IMPEDE A SELEÇÃO DE TEXTO NO INÍCIO DO ARRASTE
         container.style.userSelect = 'none'; 
-        container.style.webkitUserSelect = 'none'; // Safari
         
         startX = e.pageX - container.offsetLeft;
         startY = e.pageY - container.offsetTop;
@@ -147,13 +134,8 @@ scrollContainers.forEach(container => {
 
     const stopDragging = () => {
         isDown = false;
-        if (container.classList.contains('dragging')) {
-            container.classList.remove('dragging');
-            
-            // LIBERA A SELEÇÃO DE TEXTO AO SOLTAR
-            container.style.userSelect = 'auto';
-            container.style.webkitUserSelect = 'auto';
-        }
+        container.classList.remove('dragging');
+        container.style.userSelect = 'auto';
     };
 
     container.addEventListener('mouseleave', stopDragging);
@@ -164,13 +146,12 @@ scrollContainers.forEach(container => {
         e.preventDefault();
         const x = e.pageX - container.offsetLeft;
         const y = e.pageY - container.offsetTop;
-        
-        // Multiplicador 2 para um deslize mais ágil
         container.scrollLeft = scrollLeft - (x - startX) * 2;
         container.scrollTop = scrollTop - (y - startY) * 2;
     });
 });
-// --- 7. ANIMAÇÕES DE ENTRADA E INICIALIZAÇÃO ---
+
+// --- ANIMAÇÕES DE ENTRADA ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
