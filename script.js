@@ -32,17 +32,22 @@ const setupSumario = () => {
     document.addEventListener('click', (e) => {
         const link = e.target.closest('.dropdown-content a');
         if (link && !isDraggingMenu) {
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                e.preventDefault();
-                details.removeAttribute('open');
-                window.scrollTo({
-                    top: targetSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
+
+const targetId = link.getAttribute('href');
+const targetSection = document.querySelector(targetId);
+
+    if (targetSection) {
+        e.preventDefault();
+        details.removeAttribute('open');
+const headerOffset = 100; 
+const elementPosition = targetSection.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+}        }
         if (details && details.hasAttribute('open') && !details.contains(e.target)) {
             details.removeAttribute('open');
         }

@@ -116,6 +116,7 @@ header {
     position: relative;
     overflow: hidden;
     transform: translateZ(0);
+    
 }
 
 header .container {
