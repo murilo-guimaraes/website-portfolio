@@ -15,12 +15,13 @@ O projeto está publicado em:
 ---
 
 ## Atualizações Recentes
-### Versão v18.2.26
-Foco em polimento de interface e estabilidade do sistema:
+### Versão v19.2.26
+Atualização focada em aperfeiçoamento da interface e efeitos:
 
-* **Teste de Renderização Técnica**: Implementação experimental do relatório de **Algoritmos** para validar a exibição de blocos de código semânticos (`<code>`) e tabelas técnicas sob as normas ABNT.
-* **Protótipo de Evidências Visuais**: Teste de integração de mídias externas com foco em performance e responsividade, utilizando capturas reais de compiladores e terminais.
-* **Validação de Fluxo**: Uso da seção de algoritmos para testar o novo sistema de **Sumário Inteligente** e navegação por âncoras dentro de páginas de pesquisa.
+* Destaque de Sintaxe:** Implementação de estilização personalizada para a tag `<code>`, adicionando um fundo levemente escurecido `rgba(0,0,0,0.1)` e bordas sutis para destacar termos técnicos (`sizeof`, `int`, `RAM`) no corpo do texto.
+* **Imagens, GIFs e Legendas ABNT:** Padronização das legendas de figuras (Ex: Figura 1: Descrição...), Imagens e GIFS para garantir um aspecto acadêmico e organizado.
+* **Otimização de Carregamento:** Adição de Data URI para o `favicon` para evitar erros 404 desnecessários no console do navegador e agilizar o carregamento.
+* **Integração Colab:** Configuração de botões de ação externa para o Google Colab, permitindo que o usuário visualize testes dinâmicos de memória e endereçamento.
 
 ---
 
@@ -41,3 +42,4 @@ Foco em polimento de interface e estabilidade do sistema:
 ├── index.html               # Ponto de entrada principal
 ├── script.js                # Lógica de interatividade e carrossel
 └── style.css                # Estilização global e definições de tema
+
