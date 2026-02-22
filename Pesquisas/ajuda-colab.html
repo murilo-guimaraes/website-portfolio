@@ -54,24 +54,42 @@
             font-style: italic;
         }
     </style>
-</head>
-<body>
-    <nav>
+        <nav>
         <div class="container">
             <ul>
                 <li><a href="javascript:history.back()">← Voltar</a></li>
+                <li>
+                    <button id="dark-mode-toggle" aria-label="Alternar Tema">
+                        <svg class="sun-outline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="sun-filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 00-1.41-1.41l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 00-1.41-1.41l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
-
+</head>
+<body>
     <header>
         <div class="container">
+            
             <h1>Guia de Acesso: Laboratório no Colab</h1>
-            <p class="subtitle">Instruções para Visualização e Execução | ADS 2026</p>
+            <p class="subtitle">Instruções Para Acesso | ADS 2026</p>
             <div class="badges">
                 <span class="mini-tag">Google Colab</span>
                 <span class="mini-tag">Acesso Remoto</span>
-                <span class="mini-tag">Execução de Código</span>
+                <span class="mini-tag">Guia Simples</span>
             </div>
         </div>
     </header>
@@ -79,34 +97,42 @@
     <main class="container">
         <section id="problemas">
             <article class="card report-section">
-                <h2>1. Por que não consigo ver o código?</h2>
+                <h2>Por que não consigo ver o código?</h2>
                 <p>O Google Colaboratory exige que você esteja logado em uma <strong>Conta Google</strong> para carregar o ambiente interativo. Caso apareça uma tela branca ou mensagem de erro, verifique se seu login está ativo.</p>
                 
                 <div class="foto-container">
                     <img src="Imagens/Erro-colab.gif" alt="Demonstração de Login" class="img-relatorio">
-                    <p class="legenda">Figura 1: Exemplo de tela de erro por falta de permissão ou login.</p>
+                    <p class="legenda">Figura 1: Exemplo de tela de erro de login.</p>
                 </div>
             </article>
-        </section>
+            </section>
 
-        <section id="execucao">
+        <section id="abrir-colab">
             <article class="card report-section">
-                <h2>2. Como rodar os testes de memória?</h2>
-                <p>Diferente de um site estático, o Colab permite que você <strong>execute</strong> o código C em tempo real. Cada bloco de código possui um botão de "Play" no canto superior esquerdo.</p>
+                <h2>Como abrir o Laboratório</h2>
+                <p>Após garantir que você está <strong>conectado à sua conta Google</strong>, o processo para visualizar o código de forma organizada é simples. Siga os passos indicados abaixo para sair da <strong>visualização de código bruto (JSON)</strong> para a <strong>interface interativa</strong> do Colab.</p>
                 
-                <div class="analogia-box">
-                    <strong>Dica Técnica:</strong> Ao clicar no Play, o Google reserva uma pequena parte de um servidor para rodar o código e te mostrar o resultado do <code>sizeof()</code> e dos endereços de memória.
+                <div class="foto-container">
+                    <img src="Imagens/Instalar-colab.gif" alt="Como abrir no Colab" class="img-relatorio">
+                    <p class="legenda">Figura 2: Procedimento para instalar a interface do Colaboratory.</p>
                 </div>
+
+                <h2>Passo a Passo:</h2>
+                <li>No topo da página do arquivo, localize o botão central <strong>"Abrir com"</strong>.</li>
+                <p></p>
+                <li>Clique no botão <strong>"+ Conectar mais aplicativos"</strong> para abrir a página de aplicativos.</li>
+                <p></p>
+                <li>Em seguida, pesquise por <strong>"Colaboratory"</strong> na barra de busca.</li>
+                <p></p>
+                <li>Selecione o aplicativo e clique em <strong>"Instalar"</strong> para adicioná-lo à sua lista de aplicativos disponíveis.</li>
+                <p></p>
+                <li>Após a instalação, recarregue a página e volte ao arquivo, clique novamente no botão <strong>"Abrir com"</strong>, onde agora a opção <strong>"Google Colaboratory"</strong> estará disponível para seleção.</li>
 
                 <div class="foto-container">
-                    <img src="Imagens/instrucao-play.gif" alt="Como dar play no código" class="img-relatorio">
-                    <p class="legenda">Figura 2: Localização do botão de execução no ambiente Colab.</p>
+                    <img src="Imagens/Abrir-colab.gif" alt="Como abrir no Colab" class="img-relatorio">
+                    <p class="legenda">Figura 3: Abrindo o arquivo no Google Colab.</p>
                 </div>
 
-                <h3>Passo a Passo:</h3>
-                <p>1. Localize a célula de código.<br>
-                   2. Clique no ícone de Play.<br>
-                   3. O resultado aparecerá logo abaixo da célula, em uma janela de terminal simulada.</p>
             </article>
         </section>
     </main>

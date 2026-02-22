@@ -176,5 +176,4 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('section, article.card').forEach(el => observer.observe(el));
-
 document.addEventListener('DOMContentLoaded', setupSumario);

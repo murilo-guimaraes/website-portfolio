@@ -161,12 +161,20 @@
             border-radius: 8px;
             border: 1px var(--primary);
         }
+        .img-dark { display: none; }
+        .img-light { display: block; margin: 0 auto; }
         .img-relatorio {
-            max-width: 100%; 
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,1);
+            transition: opacity 0.3s ease-in-out;
         }
+
+        body.dark-mode .img-dark { 
+            display: block; 
+            margin: 0 auto; 
+        }
+        body.dark-mode .img-light { 
+            display: none; 
+        }
+        
         .legenda {
             font-size: 0.9rem;
             color: var(--text);
@@ -326,12 +334,14 @@
             <strong>portabilidade</strong> do software e a <strong>eficiência</strong> no uso dos recursos do hardware.
             </p>
 
-        <div class="foto-container">
-            <img src="Imagens/Teste-dark.png" alt="Implementação do código em C" class="img-relatorio">
-            <p class="legenda">Figura 1: Execução do código de alocação de memória em C no Colaboratory.</p>
-        </div>
-    </article>
-</section>
+            <div class="foto-container">
+                <img src="Imagens/Teste-dark.png" alt="Execução em C" class="img-relatorio img-dark">
+                <img src="Imagens/Teste.png" alt="Execução em C" class="img-relatorio img-light">
+                
+                <p class="legenda">Figura 1: Execução do código de alocação de memória em C no Colaboratory.</p>
+            </div>
+        </article>
+    </section>
 
             <section id="especificadores">
     <article class="card report-section">
@@ -407,7 +417,8 @@
 
                   
                     <div class="foto-container">
-                        <img src="Imagens/Resultado-dark.png" alt="Implementação do código em C" class="img-relatorio">
+                        <img src="Imagens/Resultado-dark.png" alt="Implementação do código em C" class="img-dark">
+                        <img src="Imagens/Resultado.png" alt="Implementação do código em C" class="img-light">
                         <p class="legenda">Figura 2: Resultado da execução no terminal validando a alocação e o endereçamento físico.</p>
                     </div>
 
