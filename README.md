@@ -15,12 +15,12 @@ O projeto está publicado em:
 ---
 
 ## Atualizações Recentes
-### Versão v18.2.26
-Foco em polimento de interface e estabilidade do sistema:
+### Versão v22.2.26
+Melhorias em imagens e pequenos ajustes na interface:
 
-* **Teste de Renderização Técnica**: Implementação experimental do relatório de **Algoritmos** para validar a exibição de blocos de código semânticos (`<code>`) e tabelas técnicas sob as normas ABNT.
-* **Protótipo de Evidências Visuais**: Teste de integração de mídias externas com foco em performance e responsividade, utilizando capturas reais de compiladores e terminais.
-* **Validação de Fluxo**: Uso da seção de algoritmos para testar o novo sistema de **Sumário Inteligente** e navegação por âncoras dentro de páginas de pesquisa.
+* **Figuras Dual Mode**: Figuras estáticas agora possuem versões para o modo claro e escuro nas páginas. *(BETA)*
+* **Textos Destacados**: Pequenas alterações na paleta de cores dos textos para não se "camuflarem" no plano de fundo.
+* **Ajuda Colab**: Atualização nas figuras da página *"Guia de Acesso: Laboratório no Colab"* juntamente de um *"Passo a Passo"*.
 
 ---
 
@@ -33,11 +33,11 @@ Foco em polimento de interface e estabilidade do sistema:
 ## Estrutura de Arquivos
 ```text
 ├── Pesquisas/
-│   ├── Algoritmos e Programação Estruturada/
-│   │   ├── Imagens/         # Evidências de código e terminal
-│   │   └── algoritmos.html  # Relatório técnico de variáveis e memória
-│   └── Redes de Computadores/
-│       └── redes.html       # Estudos de infraestrutura
-├── index.html               # Ponto de entrada principal
-├── script.js                # Lógica de interatividade e carrossel
-└── style.css                # Estilização global e definições de tema
+│   ├── Imagens/            # Prints de execução (Light/Dark) e GIFs
+│   ├── ajuda-colab.html    # Guia de acesso ao Colaboratory
+│   ├── algoritmos.html     # Relatório técnico de variáveis e memória
+│   └── redes.html          # Estudos de infraestrutura e fluxo de dados
+├── Projetos/               # (Não iniciado)
+├── index.html              # Ponto de entrada principal
+├── script.js               # Lógica de interatividade e troca de temas
+└── style.css               # Estilização global e definições de tema
