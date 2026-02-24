@@ -49,12 +49,39 @@ h1 {
     align-items: center;
     justify-content: center;
     color: white;
+    position: relative;
+    overflow: hidden;
 }
 
-.sun-filled { display: block; }
-.sun-outline { display: none; }
-body.dark-mode .sun-outline { display: block; }
-body.dark-mode .sun-filled { display: none; }
+#dark-mode-toggle i {
+    font-size: 1rem;
+    position: absolute; /* Sobrepõe os ícones no centro */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Estado inicial: Esconde a lua e mostra o sol */
+.sun-outline { 
+    opacity: 0; 
+    transform: rotate(90deg) scale(0); 
+}
+.sun-filled { 
+    opacity: 1; 
+    transform: rotate(0deg) scale(1); 
+}
+
+/* Quando estiver no Dark Mode: Esconde o sol e mostra a lua */
+body.dark-mode .sun-filled { 
+    opacity: 0; 
+    transform: rotate(-90deg) scale(0); 
+}
+body.dark-mode .sun-outline { 
+    opacity: 1; 
+    transform: rotate(0deg) scale(1); 
+}
+@keyframes rotateIn {
+    from { transform: rotate(-180deg) scale(0); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -119,6 +146,14 @@ header {
     
 }
 
+header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
 header .container {
     position: relative;
     z-index: 2;
@@ -185,12 +220,20 @@ h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
 .card {
     background: var(--white);
     padding: 25px;
-    border-radius: 8px;
-    border: 1px solid rgba(128,128,128,0.2);
-    transition: transform 0.3s ease;
+    border-radius: 16px; /* Bordas mais arredondadas para um ar moderno */
+    border: 1px solid rgba(128,128,128,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
+    /* Sombra suave que se adapta ao fundo */
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1); 
+}
+
+.card:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.2);
 }
 
 .card > p {
@@ -198,7 +241,6 @@ h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
     margin-bottom: 20px;
 }
 
-.card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
 .projetos-header {
     display: flex;
@@ -324,20 +366,21 @@ body.dark-mode .master-btn:hover {
 
 .skill-tag {
     background: var(--white);
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    padding: 8px 16px;
-    border-radius: 50px;
+    color: var(--text);
+    border: 1px solid var(--accent);
+    padding: 8px 18px;
+    border-radius: 12px; /* Arredondado moderno, igual aos cards */
     font-size: 0.85rem;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
 }
 
 .skill-tag:hover {
     background: var(--accent);
     color: white;
-    border-color: var(--accent);
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px var(--gradient-end, 0.3);
 }
 
 #back-to-top {
@@ -483,7 +526,6 @@ body.dark-mode * {
     border-top: 1px solid rgba(128, 128, 128, 0.1);
     transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
 }
-
 .status-container {
     font-size: 0.85rem;
     font-weight: 600;
@@ -591,7 +633,33 @@ body.dark-mode .geometric-shape {
     background-color: var(--card-bg);
     color: var(--text);
 }
+/* Garante que o botão se alinhe em relação ao card */
+.card.pesquisa {
+    position: relative;
+    padding-top: 40px; /* Dá espaço para o ícone no topo */
+}
 
+.mini-download-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--accent);
+    opacity: 0.5; /* Fica discreto por padrão */
+    transition: all 0.3s ease;
+    z-index: 10;
+    padding: 5px;
+}
+
+.mini-download-btn:hover {
+    opacity: 1;
+    transform: scale(1.2);
+    color: var(--accent);
+}
+
+/* Esconde o texto e mostra apenas o ícone para ser minimalista */
+.mini-download-btn svg {
+    display: block;
+}
 body.dark-mode .content-wrapper {
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
 }
@@ -623,13 +691,21 @@ body.dark-mode .content-wrapper {
     }
 }
 
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 @keyframes zeroGravity {
     0% { transform: translate(0, 0) rotate(0deg); }
     33% { transform: translate(30px, -50px) rotate(120deg); }
     66% { transform: translate(-20px, 20px) rotate(240deg); }
     100% { transform: translate(0, 0) rotate(360deg); }
-}
-
-@keyframes shine {
-    to { background-position: 200% center; }
 }
