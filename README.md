@@ -15,12 +15,12 @@ O projeto está publicado em:
 ---
 
 ## Atualizações Recentes
-### Versão v22.2.26
-Melhorias em imagens e pequenos ajustes na interface:
+### Versão v24.2.26
+Funções novas e polimento geral:
 
-* **Figuras Dual Mode**: Figuras estáticas agora possuem versões para o modo claro e escuro nas páginas. *(BETA)*
-* **Textos Destacados**: Pequenas alterações na paleta de cores dos textos para não se "camuflarem" no plano de fundo.
-* **Ajuda Colab**: Atualização nas figuras da página *"Guia de Acesso: Laboratório no Colab"* juntamente de um *"Passo a Passo"*.
+* **Baixar PDFs**: Novo botão de download de projetos e pesquisas na página principal.  
+* **Animações e Ícones**: Animações novas e mais fluidas, juntamente com ícone novo do *"Dual-Mode"*.
+* **Correção de Bugs**: Pequenos ajustes técnicos nas interfaçes.
 
 ---
 
@@ -33,6 +33,7 @@ Melhorias em imagens e pequenos ajustes na interface:
 ## Estrutura de Arquivos
 ```text
 ├── Pesquisas/
+|   ├── PDFs/               # Versão em PDF para Download
 │   ├── Imagens/            # Prints de execução (Light/Dark) e GIFs
 │   ├── ajuda-colab.html    # Guia de acesso ao Colaboratory
 │   ├── algoritmos.html     # Relatório técnico de variáveis e memória
@@ -41,3 +42,4 @@ Melhorias em imagens e pequenos ajustes na interface:
 ├── index.html              # Ponto de entrada principal
 ├── script.js               # Lógica de interatividade e troca de temas
 └── style.css               # Estilização global e definições de tema
+
