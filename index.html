@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Murilo Guimarães | Portfólio</title>
@@ -10,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="mesh-gradient"></div>
     <div class="geometric-shape circle-1"></div>
     <div class="geometric-shape circle-2"></div>
     <div class="geometric-shape circle-3"></div>
@@ -20,10 +22,10 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#formacao">Formação</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#sobre"><b>Sobre</b></a></li>
+                <li><a href="#formacao"><b>Formação</b></a></li>
+                <li><a href="#projetos"><b>Projetos</b></a></li>
+                <li><a href="#contato"><b>Contato</b></a></li>
                 <button id="dark-mode-toggle" aria-label="Alternar modo de cor">
                     <i class="fas fa-sun sun-filled"></i>
                     <i class="fas fa-moon sun-outline"></i>
@@ -33,7 +35,9 @@
     </nav>
 
     <header>
+        
         <div class="container">
+            <p class="easter-egg">Clique na foto para ganhar uma flor!</p>
             <a href="https://github.com/murilo-guimaraes" target="_blank" class="profile-link">
                 <img src="https://github.com/murilo-guimaraes.png" alt="Foto de Murilo Guimarães" class="profile-pic">
             </a>
@@ -186,15 +190,20 @@
             </div>         
         </section>
 
-        <section id="contato">
-            <h2>Contato</h2>
-            <div class="contato-links">
-                <a href="mailto:murilo235guimaraes@gmail.com">Email</a>
-                <a href="https://www.linkedin.com/in/murilo-guimar%C3%A3es-763b553b0/?locale=en_US" target="_blank">LinkedIn</a>
-                <a href="https://github.com/murilo-guimaraes" target="_blank">GitHub</a>
-            </div>
-        </section>
-    </main>
+<section id="contato" class="container">
+    <h2>Contato</h2>
+    <div class="contato-links">
+        <a href="mailto:murilo235guimaraes@gmail.com" class="contact-item">
+            <i class="fas fa-envelope"></i> <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/murilo-guimar%C3%A3es-763b553b0/" class="contact-item">
+            <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/murilo-guimaraes" class="contact-item">
+            <i class="fab fa-github"></i> <span>GitHub</span>
+        </a>
+    </div>
+</section>
 
     <footer>
         <p>&copy; 2026 Murilo Guimarães. Desenvolvido com foco em performance e acessibilidade.</p>

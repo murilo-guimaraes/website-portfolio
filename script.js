@@ -45,7 +45,7 @@ const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
     window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'auto'
     });
 }        }
         if (details && details.hasAttribute('open') && !details.contains(e.target)) {

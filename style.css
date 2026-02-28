@@ -43,7 +43,6 @@ h1 {
     padding: 0;
     display: flex;
     background: var(--primary);
-    border: none;
     border-radius: 50%;
     cursor: pointer;
     align-items: center;
@@ -51,15 +50,19 @@ h1 {
     color: white;
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--white,128, 128, 128, 0.1);
+}
+
+#dark-mode-toggle:hover {
+    background-color: var(--accent);
 }
 
 #dark-mode-toggle i {
     font-size: 1rem;
-    position: absolute; /* Sobrepõe os ícones no centro */
+    position: absolute; 
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Estado inicial: Esconde a lua e mostra o sol */
 .sun-outline { 
     opacity: 0; 
     transform: rotate(90deg) scale(0); 
@@ -69,7 +72,6 @@ h1 {
     transform: rotate(0deg) scale(1); 
 }
 
-/* Quando estiver no Dark Mode: Esconde o sol e mostra a lua */
 body.dark-mode .sun-filled { 
     opacity: 0; 
     transform: rotate(-90deg) scale(0); 
@@ -94,18 +96,38 @@ body {
 .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
 nav {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    background: var(--white);
-    padding: 15px 0;
     position: sticky;
     top: 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
     z-index: 1000;
+   
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    padding: 10px 0;
 }
 
-section { scroll-margin-top: 90px; }
+nav ul li a {
+    background-color: var(--white);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+
+nav ul li a:hover {
+    background-color: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 
 nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; align-items: center; }
 nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; }
@@ -220,14 +242,14 @@ h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
 .card {
     background: var(--white);
     padding: 25px;
-    border-radius: 16px; /* Bordas mais arredondadas para um ar moderno */
+    border-radius: 16px;
     border: 1px solid rgba(128,128,128,0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Sombra suave que se adapta ao fundo */
-    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1); 
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+    position: relative; 
 }
 
 .card:hover { 
@@ -258,63 +280,84 @@ h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
 }
 
 .filter-group {
-    display: flex;
-    gap: 8px;
-    background: rgba(128, 128, 128, 0.1);
-    padding: 5px;
+    display: inline-flex;
+    gap: 12px;
+    background: rgba(127, 127, 127, 0.1);
+    padding: 8px;
     border-radius: 50px;
-    white-space: nowrap;
+    border: 1px solid rgba(127, 127, 127, 0.2);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
 }
 
 .filter-btn {
     background: transparent;
     border: none;
     color: var(--text);
-    padding: 6px 15px;
+    padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    outline: none;
 }
 
 .filter-btn.active {
-    background: var(--primary);
-    color: white;
+    background: var(--accent) !important;
+    color: white !important;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px var(--accent);
+    z-index: 2;
 }
 
+
+.filter-btn:not(.active):hover {
+    background: rgba(127, 127, 127, 0.2);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
 .card.hidden {
     display: none;
 }
 
 .master-btn {
-    background: transparent;
+    background: transparent !important;
     color: var(--primary);
     border: 2px solid var(--primary);
-    padding: 8px 20px;
-    border-radius: 50px;
+    padding: 8px 25px;
+   
+    border-radius: 50px !important; 
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     justify-self: end;
     white-space: nowrap;
+    position: relative;
+   
+    overflow: visible !important; 
 }
 
 .master-btn:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-2px);
+    background: var(--primary) !important;
+    color: white !important;
+    transform: translateY(-3px) scale(1.05);
+   
+    box-shadow: 0 0 20px var(--primary) !important;
 }
 
+
 body.dark-mode .master-btn {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
 }
 
 body.dark-mode .master-btn:hover {
-    background: var(--accent);
-    color: var(--white);
+    background: var(--accent) !important;
+    color: white !important;
+    box-shadow: 0 0 20px var(--accent) !important;
 }
 
 .tag-container {
@@ -369,7 +412,7 @@ body.dark-mode .master-btn:hover {
     color: var(--text);
     border: 1px solid var(--accent);
     padding: 8px 18px;
-    border-radius: 12px; /* Arredondado moderno, igual aos cards */
+    border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -487,9 +530,9 @@ body.dark-mode * {
     background: var(--accent);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px; 
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -497,17 +540,46 @@ body.dark-mode * {
     gap: 10px;
     margin-top: 15px;
     width: 100%;
-    transition: transform 0.2s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .expand-btn:hover {
-    transform: scale(1.02);
+    transform: translateY(-2px) scale(1.01);
     filter: brightness(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 
+    0 0 12px var(--accent); 
+}
+
+.expand-btn:active {
+    transform: scale(0.98);
 }
 
 .expand-btn span {
-    transition: transform 0.3s;
-    font-size: 0.8rem;
+    transition: transform 0.4s ease;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.card[open] .expand-btn span {
+    transform: rotate(180deg);
+}
+
+.expand-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.6s;
+}
+
+.expand-btn:hover::after {
+    left: 150%;
 }
 
 .extra-content {
@@ -563,33 +635,82 @@ body.dark-mode .em-andamento { color: #ffd54f; border-color: #ffd54f; }
 body.dark-mode .finalizado { color: #81c784; border-color: #81c784; }
 
 .view-btn {
-    display: inline-block;
-    margin-top: 15px;
+    display: inline-flex;
     background: var(--primary);
-    color: white;
-    padding: 8px 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: var(--white);
+    padding: 10px 24px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 0.85rem;
-    font-weight: bold;
-    transition: 0.3s;
+    font-weight: 600;
+    border: 1px solid rgba(127, 127, 127, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
 }
 
 .view-btn:hover {
     background: var(--accent);
-    transform: scale(1.05);
-}
-
-.contato-links a {
-    display: inline-block;
-    margin-right: 15px;
-    padding: 10px 20px;
-    background: var(--primary);
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 
+                0 0 15px var(--accent);
 }
 
+
+.view-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.view-btn:hover::before {
+    left: 100%;
+}
+
+.contato-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;             
+    margin-top: 25px;
+    align-items: flex-start;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;   
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    gap: 15px;             
+}
+
+.contact-item i {
+    font-size: 1.5rem;     
+    width: 30px;           
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    color: var(--accent);
+    transform: translateX(10px);
+}
+
+.contact-item:hover i {
+    filter: drop-shadow(0 0 8px var(--accent));
+}
 footer { text-align: center; padding: 40px; font-size: 0.8rem; opacity: 0.6; }
 
 .geometric-shape {
@@ -633,10 +754,10 @@ body.dark-mode .geometric-shape {
     background-color: var(--card-bg);
     color: var(--text);
 }
-/* Garante que o botão se alinhe em relação ao card */
+
 .card.pesquisa {
     position: relative;
-    padding-top: 40px; /* Dá espaço para o ícone no topo */
+    padding-top: 40px;
 }
 
 .mini-download-btn {
@@ -644,7 +765,7 @@ body.dark-mode .geometric-shape {
     top: 15px;
     right: 15px;
     color: var(--accent);
-    opacity: 0.5; /* Fica discreto por padrão */
+    opacity: 0.5;
     transition: all 0.3s ease;
     z-index: 10;
     padding: 5px;
@@ -656,7 +777,6 @@ body.dark-mode .geometric-shape {
     color: var(--accent);
 }
 
-/* Esconde o texto e mostra apenas o ícone para ser minimalista */
 .mini-download-btn svg {
     display: block;
 }
@@ -697,6 +817,58 @@ section {
     animation: fadeInUp 0.8s forwards;
 }
 
+.easter-egg {
+    font-size: 0.75rem;
+    color: white;
+    margin-top: 8px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+.easter-egg:hover {
+    color: white;
+    transform: translateY(-2px);
+    opacity: 1;
+}
+.mesh-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: var(--bg);
+    overflow: hidden;
+}
+.mesh-gradient::before,
+.mesh-gradient::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    animation: meshFlow 20s infinite alternate ease-in-out;
+}
+
+.mesh-gradient::before {
+    background: var(--primary);
+    top: -10%;
+    left: -10%;
+}
+
+.mesh-gradient::after {
+    background: var(--accent);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -10s;
+}
+
+@keyframes meshFlow {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.2); }
+}
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -709,3 +881,4 @@ section {
     66% { transform: translate(-20px, 20px) rotate(240deg); }
     100% { transform: translate(0, 0) rotate(360deg); }
 }
+
