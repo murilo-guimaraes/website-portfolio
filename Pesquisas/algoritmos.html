@@ -83,76 +83,69 @@ header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accen
 }
 .ref-btn:hover { background: var(--accent); transform: translateX(5px); }
 .nav-item-details { position: relative; list-style: none; }
+
+/* 1. O Botão (Summary) */
 details summary {
+background-color: var(--white); /* Mesmo fundo sólido dos links */
+    color: var(--text);
+    padding: 8px 16px; /* Mesmo padding */
+    border-radius: 8px; /* Mesmo arredondamento */
+    border: 1px solid rgba(128, 128, 128, 0.2); /* Mesma borda */
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
     list-style: none;
-    padding: 6px 18px;
-    border-radius: 50px;
-    border: 1px solid rgba(127, 127, 127, 0.4);
-    font-size: 0.9rem;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    background: rgba(127, 127, 127, 0.1);
-    transition: 0.3s;
-    user-select: none;
+    transition: all 0.3s ease;
 }
-details summary::-webkit-details-marker { display: none; }
+
+details summary:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
 .dropdown-content {
     position: absolute;
-    top: 45px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 220px;
-    max-height: 70vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    background: var(--background); /* Segue o tema automaticamente */
+    border: 1px solid rgba(127, 127, 127, 0.2);
     border-radius: 12px;
-    z-index: 999999 !important;
-    padding: 8px 0;
-    user-select: none;
-    -webkit-user-drag: none;
-    background: var(--white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Garante que os itens respeitem o border-radius */
+    z-index: 1000;
 }
-.dropdown-content a { display: block; padding: 12px 20px; min-width: max-content; cursor: pointer; text-decoration: none; color: var(--text); }
-.dropdown-content a:hover { background-color: var(--accent); color: var(--white) !important; }
 
-.dropdown-content {
-    background-color: #1e1e1e !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
 .dropdown-content a {
-    color: #ffffff !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-body:not(.dark-mode) .dropdown-content {
-    background-color: var(--white) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-body:not(.dark-mode) .dropdown-content a {
-    color: #1e1e1e !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: block;
+    padding: 12px 20px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(127, 127, 127, 0.1);
+    transition: 0.2s;
 }
 
-body:not(.dark-mode) .dropdown-content a:hover {
-    background-color: var(--primary) !important;
-    color: var(--white) !important; 
-}
-body:not(.dark-mode) .dropdown-content a {
-    color: #1a1a1a !important; 
-}
-body.dark-mode .dropdown-content a {
-    color: #eeeeee;
-}
-.dropdown-content::-webkit-scrollbar { width: 8px; }
-.dropdown-content::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-.dropdown-content::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+.dropdown-content a:last-child { border-bottom: none; }
 
-details summary .arrow { display: inline-block; transition: transform 0.3s ease; }
-details summary::after { content: " ▼"; }
-details[open] summary::after { content: " ▲"; }
+.dropdown-content a:hover {
+    background: var(--accent);
+    color: var(--white) !important;
+}
+
+details summary::after {
+    content: "▼";
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+details[open] summary::after {
+    transform: rotate(180deg);
+}
 
 .foto-container {
     text-align: center;
@@ -162,11 +155,19 @@ details[open] summary::after { content: " ▲"; }
     border-radius: 8px;
     border: 1px var(--primary);
 }
+
+img {
+    max-width: 100%; 
+    height: auto;    
+    display: block; 
+}
+
 .img-dark { display: none; }
 .img-light { display: block; margin: 0 auto; }
 .img-relatorio {
     transition: opacity 0.3s ease-in-out;
 }
+
 
 body.dark-mode .img-dark { 
     display: block; 
@@ -217,6 +218,7 @@ body.dark-mode .img-light {
     </style>
 </head>
 <body>
+    <div class="mesh-gradient"></div>
     <div class="geometric-shape circle-1"></div>
     <div class="geometric-shape circle-2"></div>
     <div class="geometric-shape circle-3"></div>
@@ -228,21 +230,21 @@ body.dark-mode .img-light {
     <nav>
         <div class="container">
             <ul>
-                <li><a href="../index.html">← Voltar</a></li>
+                <li><a href="../index.html"><b>← Voltar</b></a></li>
                 <li class="nav-item-details">
                     
                     <details id="sumario-dropdown">
-                        <summary>Sumário</summary>
+                        <summary><b>Sumário</b></summary>
                         <div class="dropdown-content">
-                            <a href="#objetivos">1. Objetivo</a>
-                            <a href="#introducao">2. Introdução</a>
-                            <a href="#ciclo">3. Ciclo de Vida</a>
-                            <a href="#metodologia">4. Metodologia</a>
-                            <a href="#especificadores">5. Especificadores</a>
-                            <a href="#dados">6. Dados Obtidos</a>
-                            <a href="#exercicios">7. Exercícios</a>
-                            <a href="#conclusao">8. Conclusão</a>
-                            <a href="#referencias">Referências</a>
+                            <a href="#objetivos"><b>1. Objetivo</b></a>
+                            <a href="#introducao"><b>2. Introdução</b></a>
+                            <a href="#ciclo"><b>3. Ciclo de Vida</b></a>
+                            <a href="#metodologia"><b>4. Metodologia</b></a>
+                            <a href="#especificadores"><b>5. Especificadores</b></a>
+                            <a href="#dados"><b>6. Dados Obtidos</b></a>
+                            <a href="#exercicios"><b>7. Exercícios</b></a>
+                            <a href="#conclusao"><b>8. Conclusão</b></a>
+                            <a href="#referencias"><b>9. Referências</b></a>
                         </div>
                     </details>
                 </li>
