@@ -18,11 +18,11 @@ O projeto está publicado em:
 ### Versão v28.2.26
 Reimaginação completa da interface com foco na Experiência do Usuário (UX):
 
-* **Efeito Mesh Gradient:**: Substituição do fundo estático por um gradiente de malha dinâmico e fluido.
-* **Glow e Blur**: Efeito de sombreamento e desfoque dinâmicos que reagem ao tema e ao mouse.
+* **Efeito Mesh Gradient:** Substituição do fundo estático por um gradiente de malha dinâmico e fluido.
+* **Glow e Blur**: Efeitos de sombreamento e desfoque dinâmicos que reagem ao tema e ao mouse.
 * **Novas Animações**: Transições mais interessantes em todos os elementos clicáveis.
 * **Correção de Bugs**: Pequenos ajustes técnicos para estabilidade.
-* **Ícones e Figuras**: Acrescentado ícones mais sofisticados e elegantes.
+* **Ícones e Figuras**: Acrescentados ícones mais sofisticados e elegantes.
 
 ---
 
@@ -41,4 +41,5 @@ Reimaginação completa da interface com foco na Experiência do Usuário (UX):
 ├── index.html              # Core da aplicação
 ├── script.js               # Inteligência de interatividade e temas
 └── style.css               # Design system, animações e efeitos de luz
+
 
