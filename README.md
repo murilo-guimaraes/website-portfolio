@@ -15,14 +15,12 @@ O projeto está publicado em:
 ---
 
 ## O que há de novo?
-### Versão v28.2.26
-Reimaginação completa da interface com foco na Experiência do Usuário (UX):
+### Versão v03.3.26
+Pequenos ajustes na interface
 
-* **Efeito Mesh Gradient:** Substituição do fundo estático por um gradiente de malha dinâmico e fluido.
-* **Glow e Blur**: Efeitos de sombreamento e desfoque dinâmicos que reagem ao tema e ao mouse.
-* **Novas Animações**: Transições mais interessantes em todos os elementos clicáveis.
+* **Nova Pesquisa**: Novo relatório trazendo funcionalidades novas. *(BETA)* 
+* **Colaboratory**: Movido para dentro do `<nav>` localizado no topo da página dos projetos, facilitando o acesso.
 * **Correção de Bugs**: Pequenos ajustes técnicos para estabilidade.
-* **Ícones e Figuras**: Acrescentados ícones mais sofisticados e elegantes.
 
 ---
 
@@ -41,5 +39,6 @@ Reimaginação completa da interface com foco na Experiência do Usuário (UX):
 ├── index.html              # Core da aplicação
 ├── script.js               # Inteligência de interatividade e temas
 └── style.css               # Design system, animações e efeitos de luz
+
 
 
