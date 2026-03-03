@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Sistemas | Murilo Guimarães</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { padding-top: 0px; display: block !important; }
+header {
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px 40px;
+    transform: translateZ(0);
+}
+code { background-color: rgba(0, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px; font-family: monospace; border: 1px solid #ccc; }   
+
+header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accent); text-transform: none; }
+.report-section { margin-bottom: 30px; cursor: default; }
+.report-section h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; text-transform: none; }
+.report-section h3 { margin-top: 25px; color: var(--accent); font-size: 1.2rem; opacity: 0.9; }
+.report-section p { text-align: justify; line-height: 1.6; text-indent: 2em; margin-bottom: 10px; }
+.analogia-box {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 15px;
+    margin: 15px 0;
+    font-style: italic;
+    text-indent: 0;
+}
+.report-section ul { list-style: none; padding-left: 0; }
+.report-section li { margin-bottom: 25px; line-height: 1.7; }
+.report-section li strong { display: block; margin-bottom: 5px; }
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    cursor: grab;
+}
+.table-container.dragging { cursor: grabbing; }
+.table-abnt { width: 100%; min-width: 650px; border-collapse: collapse; }
+.table-abnt caption { text-align: left; margin-bottom: 5px; font-weight: bold; }
+.table-abnt th { border-top: 2px solid var(--text-main); border-bottom: 1px solid var(--text-main); padding: 15px; text-align: left; }
+.table-abnt td { padding: 8px; border-bottom: 1px solid var(--border-color); }
+.table-abnt tr:last-child td { border-bottom: 2px solid var(--text-main); }
+.table-container::-webkit-scrollbar { height: 6px; }
+.table-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+.fonte-abnt { font-size: 12px; margin-top: 5px; display: block; }
+.referencias-content { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 0 auto; }
+.ref-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+    transition: 0.3s;
+}
+.ref-item:hover { background: rgba(255, 255, 255, 0.07); }
+.ref-item p { margin: 0; font-size: 0.9rem; color: var(--text-color); padding-right: 20px; text-align: left; }
+.ref-btn {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+.ref-btn:hover { background: var(--accent); transform: translateX(5px); }
+.nav-item-details { position: relative; list-style: none; }
+
+details summary {
+background-color: var(--white);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+details summary:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: var(--background);
+    border: 1px solid rgba(127, 127, 127, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(127, 127, 127, 0.1);
+    transition: 0.2s;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+
+.dropdown-content a:hover {
+    background: var(--accent);
+    color: var(--white) !important;
+}
+
+details summary::after {
+    content: "▼";
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.foto-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px var(--primary);
+}
+
+img {
+    max-width: 100%; 
+    height: auto;    
+    display: block; 
+}
+
+.img-dark { display: none; }
+.img-light { display: block; margin: 0 auto; }
+.img-relatorio {
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+body.dark-mode .img-dark { 
+    display: block; 
+    margin: 0 auto; 
+}
+body.dark-mode .img-light { 
+    display: none; 
+}
+
+.legenda {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.btn-colab {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px 4px 4px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(4px);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1.5px solid rgba(255, 165, 0, 0.2); 
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+.btn-colab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 165, 0, 0.2),
+        transparent
+    );
+    transition: 0.6s;
+}
+.btn-colab:hover {
+    background-color: orange;
+    color: #1e1e1e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+    border-color: orange;
+}
+.btn-colab:hover::before {
+    left: 150%;
+}
+.icon-wrapper {
+    background-color: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    padding: 6px;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.btn-colab:hover .icon-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: rotate(360deg);
+}
+.icon-colab {
+    width: 20px; 
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+    </style>
+</head>
+<body>
+    <div class="mesh-gradient"></div>
+    <div class="geometric-shape circle-1"></div>
+    <div class="geometric-shape circle-2"></div>
+    <div class="geometric-shape circle-3"></div>
+    <div class="geometric-shape square-1"></div>
+    <div class="geometric-shape square-2"></div>
+    <div class="geometric-shape triangle-1"></div>
+    <div class="geometric-shape triangle-2"></div>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html"><b>← Voltar</b></a></li>
+                <li class="nav-item-details">
+                    
+                    <details id="sumario-dropdown">
+                        <summary><b>Sumário</b></summary>
+                        <div class="dropdown-content">
+                            <a href="#objetivos"><b>1. Objetivo</b></a>
+                            <a href="#introducao"><b>2. Introdução</b></a>
+                            <a href="#kernel"><b>3. Kernel</b></a>
+                            <a href="#acesso"><b>4. Acesso e Chamadas de Sistema</b></a>
+                            <a href="#arquiteturas"><b>5. Arquiteturas de SO</b></a>
+                            <a href="#classificacao"><b>6. Classificação de Processamento</b></a>
+                            <a href="#exercicios"><b>7. Exercícios</b></a>
+                            <a href="#conclusao"><b>8. Conclusão</b></a>
+                            <a href="#referencias"><b>9. Referências</b></a>
+                        </div>
+                    </details>
+                </li>
+                <li>
+                    <button id="dark-mode-toggle" aria-label="Alternar modo de cor">
+                        <i class="fas fa-sun sun-filled"></i>
+                        <i class="fas fa-moon sun-outline"></i>
+                    </button>
+                </li>
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 0px;">
+                    <a href="https://colab.research.google.com/drive/1LXdJOSF0I2vMLd2qZyoZTh6nvWktWAuK?usp=sharing" target="_blank" class="btn-colab">
+                    <span class="icon-wrapper">
+                    <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Ícone Colab" class="icon-colab">
+                </span>
+                Colaboratory
+            </a>
+            <a href="ajuda-colab.html" style="color: var(--text); font-size: 0.7rem; opacity: 0.7; text-decoration: underline;">
+                Como acesso o Colab?
+            </a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Arquitetura e Fluxo de Dados: Estruturas de Kernel e Modelos de Multiprocessamento</h1>
+            <p class="subtitle">Relatório Técnico Acadêmico | ADS 2026</p>
+            <div class="badges">
+                <span class="mini-tag">Sistemas</span>
+                <span class="mini-tag">Kernel</span>
+                <span class="mini-tag">Multitarefas</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="objetivos">
+            <article class="card report-section">
+                <h2>1. Objetivos</h2>
+                <p>Este documento analisa a evolução e a organização dos sistemas operacionais contemporâneos. O foco reside no detalhamento da gestão de tarefas complexas, nas arquiteturas de projeto (Kernel e Monolítica) e nas classificações de processamento (Multitarefa e Multiprocessamento), fundamentais para o domínio da interface entre hardware e software.</p>
+            </article>
+        </section>
+
+       <section id="introducao">
+            <article class="card report-section">
+                <h2>2. Introdução Teórica</h2>
+                <p>O sistema operacional atua como uma camada de abstração que gerencia o hardware e provê uma interface para o usuário. Compreender sua estrutura exige o entendimento do Kernel (núcleo) e dos mecanismos de proteção de hardware que garantem a estabilidade do sistema.</p>
+                <p>Abaixo, uma visão geral dos pilares que serão detalhados neste relatório:</p>
+            
+                <ul>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Kernel (Núcleo):</strong></h3>
+                        O coração do sistema; gerencia <b>CPU, memória</b> e dispositivos de E/S.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Modos de Acesso:</strong></h3>
+                        Divisão de privilégios entre <b>Modo Usuário</b> (restrito) e <b>Modo Kernel</b> (total).
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">System Calls:</strong></h3>
+                        <b>Interfaces</b> que permitem que as aplicações solicitem serviços ao núcleo.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Arquiteturas:</strong></h3>
+                        Modelos de organização como <b>Monolítica</b>, <b>Camadas</b>, <b>Microkernel</b> e <b>VMs</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Processamento:</strong></h3>
+                        Diferenciação entre <b>Monotarefa</b>, <b>Multitarefa</b> e <b>Sistemas Distribuídos</b>.
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="kernel">
+            <article class="card report-section">
+                <h2>3. O Núcleo do Sistema (Kernel)</h2>
+                <p>O <strong>Kernel</strong> é o coração do sistema operacional e a parte mais importante do computador. Ele funciona como uma <strong>ponte</strong> entre as peças físicas (hardware) e os programas que utilizamos. Segundo Barbosa (2018), o núcleo gerencia todos os recursos da máquina de forma <strong>dinâmica</strong>: assim que o computador liga, o Kernel entra em ação para garantir que tudo esteja pronto para o uso, escondendo a complexidade do hardware e facilitando a vida do usuário através da <strong>abstração</strong>.</p>
+                <p>As principais funções do núcleo, voltadas para a eficiência operacional, incluem:</p>
+                <ul>
+                    <li><h3><strong style="color: var(--accent);">Tratamento de interrupções e exceções:</h3></strong> Gestão de sinais de hardware e erros inesperados de software.</li>
+                    <li><h3><strong style="color: var(--accent);">Gerenciamento de processos e threads:</h3></strong> Responsável pelo <b>escalonamento</b>, comunicação e <b>sincronização</b>.</li>
+                    <li><h3><strong style="color: var(--accent);">Gerenciamento de memória:</h3></strong> Controle das áreas ocupadas e disponíveis na <b>memória principal</b> <b>(RAM)</b>.</li>
+                    <li><h3><strong style="color: var(--accent);">Gerenciamento de E/S:</h3></strong> Interface direta com dispositivos e <b>sistemas de arquivos</b>.</li>
+                    <li><h3><strong style="color: var(--accent);">Gerenciamento de E/S:</h3></strong> Auditoria e controle rigoroso de <b>privilégios</b>.</li>
+                </ul>   
+            </article>
+        </section>
+
+        <section id="acesso">
+            <article class="card report-section">
+                <h2>4. Modos de Acesso e Chamadas de Sistema</h2>
+                <p>Para garantir a estabilidade e a segurança operacional, o sistema implementa uma divisão baseada em <strong>privilégios de execução</strong>. Essa separação impede que falhas em aplicativos comuns comprometam a integridade do hardware ou de outros processos.</p>
+
+                <ul>
+                    <li><h3><strong style="color: var(--accent);">Modo Usuário:</h3></strong> Estado de execução restrito destinado aos aplicativos. Neste modo, o software não possui acesso direto ao hardware ou a áreas críticas da memória.</li>
+                    <li><h3><strong style="color: var(--accent);">Modo Kernel:</h3></strong> Estado de <b>privilégio total</b>. O núcleo opera neste nível para gerenciar diretamente os recursos físicos e controlar as instruções mais sensíveis do sistema.</li>
+                </ul>
+                <p>A interface entre esses estados ocorre através da <strong>System Call (Chamada de Sistema)</strong>. Quando um programa necessita de um serviço (como a leitura de um disco), ele solicita a intervenção do Kernel. O sistema então realiza uma <strong>transição de controle</strong>, executa a tarefa em modo privilegiado e, ao finalizar, devolve o controle ao programa em modo usuário.</p>
+
+            </article>
+        </section>
+
+                <section id="arquiteturas">
+                <article class="card report-section">
+                    <h2>5. Arquiteturas de Sistemas Operacionais</h2>
+                    <p>A <strong>organização interna</strong> de um sistema operacional define como seus componentes interagem entre si e com o hardware. A escolha da arquitetura impacta diretamente a <strong>performance</strong>, a facilidade de manutenção e a <strong>segurança</strong> contra falhas críticas.</p>
+
+                    <div class="table-container">
+                        <table class="table-abnt">
+                            <caption>Tabela 1 - Modelos de Arquiteturas de Sistemas Operacionais</caption>
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%;">Arquitetura</th>
+                                    <th style="width: 50%;">Características Técnicas</th>
+                                    <th style="width: 25%;">Exemplos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Monolítica</strong></td>
+                                    <td>Módulos integrados em um único bloco executável. Oferece alta eficiência e comunicação rápida entre funções.</td>
+                                    <td>MS-DOS, Unix, Linux</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Em Camadas</strong></td>
+                                    <td>Divisão hierárquica onde cada nível oculta a complexidade do hardware e serve à camada superior.</td>
+                                    <td>The OS (Tanenbaum)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Máquinas Virtuais</strong></td>
+                                    <td>Criação de um nível de abstração que simula hardware real, permitindo rodar múltiplos SOs isolados.</td>
+                                    <td>VMWare, KVM, VirtualBox</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cliente-Servidor</strong></td>
+                                    <td>Uso de um <strong>Micronúcleo</strong> para gerenciar a comunicação entre processos clientes e servidores de serviços.</td>
+                                    <td>Mach, QNX, Windows NT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                    </div>
+
+                    <div class="analogia-box">
+                    <b>Nota Técnica:</b> Enquanto modelos <strong>monolíticos</strong> priorizam a velocidade, arquiteturas como a de <strong>Microkernel</strong> (Cliente-Servidor) focam na <strong>confiabilidade</strong>, garantindo que o erro em um serviço não interrompa o funcionamento de todo o sistema.</p>
+                    </div>
+
+                </article>
+            </section>
+
+            <section id="classificacao">
+                <article class="card report-section">
+                    <h2>6. Classificação e Dinâmica de Processamento</h2>
+                    <p>A evolução dos sistemas operacionais permitiu uma gestão cada vez mais inteligente da <strong>CPU</strong>. Os sistemas são classificados conforme sua capacidade de gerenciar o <strong>tempo de processamento</strong> e o suporte à execução de múltiplas tarefas simultâneas.</p>
+                    <ul>
+                        <li><h3><b style="color: var(--accent);">Monotarefa:</b></h3> Execução de um único programa por vez, onde a <b>CPU</b> e a memória são dedicadas exclusivamente a uma tarefa até sua conclusão.</li>
+                        <li><h3><b style="color: var(--accent);">Multitarefa:</b></h3> Os recursos são compartilhados entre vários programas via <b>Time-sharing</b>, utilizando fatias de tempo denominadas <b>Quantum</b> para simular simultaneidade.</li>
+                        <li><h3><b style="color: var(--accent);">Tempo Real:</b></h3> Sistemas projetados para <b>controles industriais</b> e processos críticos, onde os prazos de resposta são rígidos e determinísticos.</li>
+                    </ul>
+                    <h2>Sistemas com Múltiplos Processadores</h2>
+                    <p>Sistemas modernos utilizam duas ou mais <b>CPUs</b> interligadas para aumentar o poder de processamento. Essa arquitetura é dividida conforme o compartilhamento de recursos físicos:</p>
+
+                    <div class="table-container">
+                        <table class="table-abnt">
+                            <caption>Tabela 2 - Arquiteturas de Multiprocessamento</caption>
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">Categoria</th>
+                                    <th style="width: 45%;">Memória e Gerenciamento</th>
+                                    <th style="width: 25%;">Exemplos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Fortemente Acoplados</strong></td>
+                                    <td>Possuem uma <strong>memória única compartilhada</strong> e são geridos por um só SO.</td>
+                                    <td><strong>SMP</strong> (Simétrico)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fracamente Acoplados</strong></td>
+                                    <td>Cada unidade possui sua própria <strong>memória individual</strong> (memória distribuída).</td>
+                                    <td><strong>Clusters</strong> / Redes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                    </div>
+                </article>
+            </section>
+
+            <section id="exercicios">
+            <article class="card report-section">
+                <h2>7. Resolução de Exercícios: "Faça Valer a Pena"</h2>
+                
+                <h3>Questão 1: Classificação de Sistemas</h3>
+                <p><strong>Análise:</strong> A questão exige a correta associação entre os modelos de processamento e suas características operacionais distintas.</p>
+                
+                <div class="table-container">
+                    <table class="table-abnt">
+                        <caption>Tabela 3 - Associação de Modelos de Processamento</caption>
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Identificador</th>
+                                <th>Critério Técnico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Batch (Lote)</td><td><strong>1</strong></td><td>Processamento sequencial sem interação direta do usuário.</td></tr>
+                            <tr><td>Real-time</td><td><strong>2</strong></td><td>Prioridade absoluta no cumprimento estrito de prazos.</td></tr>
+                            <tr><td>Time-sharing</td><td><strong>3</strong></td><td>Divisão da CPU em fatias de tempo (Quantum).</td></tr>
+                        </tbody>
+                    </table>
+                    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                </div>
+                <p style="text-indent: 0; text-align: center; margin-top: 15px;"><strong>Resposta Final: Sequência (3, 1, 2, 3, 2).</strong></p>
+
+                <h3>Questão 2: Multitarefa em Dispositivos Modernos</h3>
+                <div class="resumo-tecnico">
+                    <p><strong>Resposta: Alternativa (a).</strong> As Smart TVs modernas utilizam sistemas <strong>multitarefa</strong> para gerenciar simultaneamente internet, áudio e vídeo. O SO realiza o escalonamento desses recursos para garantir que todas as funções operem sem interrupções perceptíveis.</p>
+                </div>
+
+                <h3>Questão 3: Ambientes Virtualizados</h3>
+                <div class="resumo-tecnico">
+                    <p><strong>Resposta: Alternativa (b).</strong> A <strong>Máquina Virtual (VM)</strong> permite emular um hardware completo, possibilitando a execução de diferentes sistemas operacionais de forma isolada. É a solução ideal para testes de software sem a necessidade de particionamento físico do disco.</p>
+                </div>
+            </article>
+        </section>
+                    
+        <section id="conclusao">
+            <article class="card report-section">
+                <h2>8. Conclusão</h2>
+                <p>
+                    O estudo desta seção comprovou que o <strong>Kernel</strong> é o componente central para a estabilidade do sistema, atuando como a ponte entre <strong>software e hardware</strong>. A separação entre os <strong>Modos de Acesso</strong> (Usuário e Kernel) é o que garante que um erro em um aplicativo não interrompa o funcionamento de toda a máquina.
+                </p>
+                <p>
+                    Conceitos como <strong>System Calls</strong>, <strong>Multitarefa</strong> e <strong>Arquitetura em Camadas</strong> são de extrema importância para qualquer desenvolvedor. Esse conhecimento permite entender como os recursos são divididos de forma segura, garantindo a criação de softwares mais <strong>robustos</strong> e <strong>eficientes</strong>.
+                </p>
+            </article>
+        </section>
+
+        <section id="referencias">
+                <h2>Referências Bibliográficas</h2>
+                <div class="referencias-content">
+                    <div class="ref-item">
+                        <p>BARBOSA, C. S. <strong>Sistemas operacionais</strong>. Londrina: Editora e Distribuidora Educacional S.A., 2018. 200 p.</p>
+                    </div>
+    
+                    <div class="ref-item">
+                        <p>
+                            Este trabalho foi desenvolvido com o auxílio das ferramentas <strong>NotebookLM</strong> e <strong>Google Gemini</strong>. 
+                            As IAs foram utilizadas como assistentes de produtividade para a estruturação do layout em <strong>HTML/CSS</strong> 
+                            e para a validação técnica das explicações sobre a arquitetura do <strong>Kernel</strong> e modelos de <strong>multiprocessamento</strong>.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Murilo Guimarães. Acadêmico de ADS.</p>
+    </footer>
+
+    <button id="back-to-top" title="Voltar ao topo">↑</button>
+    
+    <script src="../script.js"></script>
+</body>
+</html>

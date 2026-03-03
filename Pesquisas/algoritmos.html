@@ -84,13 +84,12 @@ header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accen
 .ref-btn:hover { background: var(--accent); transform: translateX(5px); }
 .nav-item-details { position: relative; list-style: none; }
 
-/* 1. O Botão (Summary) */
 details summary {
-background-color: var(--white); /* Mesmo fundo sólido dos links */
+background-color: var(--white); 
     color: var(--text);
-    padding: 8px 16px; /* Mesmo padding */
-    border-radius: 8px; /* Mesmo arredondamento */
-    border: 1px solid rgba(128, 128, 128, 0.2); /* Mesma borda */
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
@@ -113,11 +112,11 @@ details summary:hover {
     left: 50%;
     transform: translateX(-50%);
     width: 220px;
-    background: var(--background); /* Segue o tema automaticamente */
+    background: var(--background);
     border: 1px solid rgba(127, 127, 127, 0.2);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    overflow: hidden; /* Garante que os itens respeitem o border-radius */
+    overflow: hidden;
     z-index: 1000;
 }
 
@@ -168,7 +167,6 @@ img {
     transition: opacity 0.3s ease-in-out;
 }
 
-
 body.dark-mode .img-dark { 
     display: block; 
     margin: 0 auto; 
@@ -187,33 +185,64 @@ body.dark-mode .img-light {
 .btn-colab {
     display: inline-flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color:rgba(0,0,0,0.2);
+    padding: 4px 14px 4px 4px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(4px);
     color: var(--text);
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: bold;
-    border: 1px var(--accent); 
-    transition: 0.3s;
+    border: 1.5px solid rgba(255, 165, 0, 0.2); 
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+.btn-colab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 165, 0, 0.2),
+        transparent
+    );
+    transition: 0.6s;
 }
 .btn-colab:hover {
     background-color: orange;
     color: #1e1e1e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+    border-color: orange;
 }
-.icon-colab {
-    width: 20px; 
-    height: 20px;
+.btn-colab:hover::before {
+    left: 150%;
 }
 .icon-wrapper {
-    background-color:rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.4); 
     display: flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    margin-right: 12px;
-    padding: 4px;
+    margin-right: 10px;
+    padding: 6px;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.btn-colab:hover .icon-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: rotate(360deg);
+}
+.icon-colab {
+    width: 20px; 
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
     </style>
 </head>
@@ -254,7 +283,16 @@ body.dark-mode .img-light {
                         <i class="fas fa-moon sun-outline"></i>
                     </button>
                 </li>
-            </ul>
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 0px;">
+                    <a href="https://colab.research.google.com/drive/13H5H_PZXWLC4q8Olhpiuy7bTkWfeBVEC?usp=sharing" target="_blank" class="btn-colab">
+                    <span class="icon-wrapper">
+                    <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Ícone Colab" class="icon-colab">
+                </span>
+                Colaboratory
+            </a>
+            <a href="ajuda-colab.html" style="color: var(--text); font-size: 0.7rem; opacity: 0.7; text-decoration: underline;">
+                Como acesso o Colab?
+            </a>
         </div>
     </nav>
 
@@ -411,19 +449,6 @@ body.dark-mode .img-light {
                         <img src="Imagens/Resultado-dark.png" alt="Implementação do código em C" class="img-dark">
                         <img src="Imagens/Resultado.png" alt="Implementação do código em C" class="img-light">
                         <p class="legenda">Figura 2: Resultado da execução no terminal validando a alocação e o endereçamento físico.</p>
-                    </div>
-
-                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 20px;">
-                        <a href="https://drive.google.com/file/d/1JzkZfuqfnNm7Whwn8uIUx98bArYRV08T/view?usp=sharing" target="_blank" class="btn-colab">
-                            <span class="icon-wrapper">
-                                <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Ícone Colab" class="icon-colab">
-                            </span>
-                            Confira outros testes de memória no Google Colab!
-                        </a>
-                        
-                        <a href="ajuda-colab.html" style="color: var(--text); font-size: 0.85rem; opacity: 0.7; text-decoration: underline;">
-                            Problemas ao acessar? Clique aqui.
-                        </a>
                     </div>
                 </article>
             </section>
