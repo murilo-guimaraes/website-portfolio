@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Redes | Murilo Guimarães</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../stylepesquisa.css">
+</head>
+<body>
+    <div class="mesh-gradient"></div>
+    <div class="geometric-shape circle-1"></div>
+    <div class="geometric-shape circle-2"></div>
+    <div class="geometric-shape circle-3"></div>
+    <div class="geometric-shape square-1"></div>
+    <div class="geometric-shape square-2"></div>
+    <div class="geometric-shape triangle-1"></div>
+    <div class="geometric-shape triangle-2"></div>
+
+<nav>
+    <div class="container">
+        <ul>
+            <li><a href="../index.html"><b>← Voltar</b></a></li>
+            <li class="nav-item-details">
+                <details id="sumario-dropdown">
+                    <summary><b>Sumário</b></summary>
+                    <div class="dropdown-content">
+                        <a href="#objetivo"><b>1. Objetivos</b></a>
+                        <a href="#introducao"><b>2. Introdução Teórica</b></a>
+                        <a href="#hierarquia"><b>3. Hierarquia e Interfaces</b></a>
+                        <a href="#modelo-osi"><b>4. Modelo ISO/OSI</b></a>
+                        <a href="#protocolos"><b>5. Serviços e Protocolos</b></a>
+                        <a href="#tabelas"><b>6. Tabelas Técnicas</b></a>
+                        <a href="#exercicios"><b>7. Exercícios</b></a>
+                        <a href="#conclusao"><b>8. Conclusão</b></a>
+                        <a href="#referencias"><b>9. Referências</b></a>
+                    </div>
+                </details>
+            </li>
+            <li>
+                <button id="dark-mode-toggle" aria-label="Alternar modo de cor">
+                    <i class="fas fa-sun sun-filled"></i>
+                    <i class="fas fa-moon sun-outline"></i>
+                </button>
+            </li>
+                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 0px;">
+                    <a href="https://colab.research.google.com/drive/1WPaHmSskil5iYvWLA2uizSxyzqDQJiqn?usp=sharing" target="_blank" class="btn-colab">
+                    <span class="icon-wrapper">
+                    <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Ícone Colab" class="icon-colab">
+                </span>
+                Colaboratory
+            </a>
+        </ul>
+    </div>
+</nav>
+
+    <header>
+        <div class="container">
+            <h1>Padronização e Arquitetura de Redes: O Modelo ISO/OSI e Protocolos de Aplicação</h1>
+            <p class="subtitle">Relatório Técnico Acadêmico | ADS 2026</p>
+            <div class="badges">
+                <span class="mini-tag">Padronização</span>
+                <span class="mini-tag">Modelo ISO/OSI</span>
+                <span class="mini-tag">Protocolos</span>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="objetivo">
+            <article class="card report-section">
+                <h2>1. Objetivos</h2>
+                <p>Este relatório analisa a <b>organização estrutural em camadas</b> fundamentada no <b>modelo de referência ISO/OSI</b>. O objetivo é detalhar a <b>modularidade</b> que sustenta a interoperabilidade entre sistemas computacionais, abrangendo desde a abstração teórica de sete níveis até a implementação prática dos <b>protocolos de aplicação</b>, essenciais para a interface entre o usuário e a infraestrutura de rede.</p>
+            </article>
+        </section>
+
+        <section id="introducao">
+            <article class="card report-section">
+                <h2>2. Introdução Teórica</h2>
+                <p>Na arquitetura de sistemas distribuídos, um <b>protocolo</b> é o conjunto de normas que governa a comunicação. Para garantir a integridade da transmissão, a pilha de protocolos deve operar sob três pilares fundamentais:</p>
+                <ul>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Sintaxe:</strong></h3>
+                        Define o <b>formato técnico</b> e a ordem de apresentação dos dados no fluxo de bits.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Semântica:</strong></h3>
+                        Determina a <b>interpretação lógica</b> de cada campo e as ações de controle a serem executadas.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Timing:</strong></h3>
+                        Gerencia o <b>sincronismo</b> e a velocidade de transmissão para mitigar o congestionamento de <b>buffers</b>.
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="hierarquia">
+            <article class="card report-section">
+                <h2>3. Hierarquia e Interfaces</h2>
+                <p>A organização em níveis reduz a complexidade sistêmica através da <b>abstração</b>.</p>
+                
+                <ul>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Comunicação Lógica (Horizontal):</strong></h3>
+                        Ocorre entre camadas adjacentes de sistemas distintos por meio de <b>protocolos</b> de mesma hierarquia.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Interfaces (Vertical):</strong></h3>
+                        A comunicação interna ocorre via <b>SAP (Service Access Points)</b>, onde a camada inferior atua como provedora de serviços para a camada superior.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Evolução Modular:</strong></h3>
+                        Esta estrutura permite a <b>evolução tecnológica</b> isolada, permitindo alterar uma camada sem a necessidade de reestruturar o sistema global.
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="modelo-osi">
+            <article class="card report-section">
+                <h2>4. O Modelo de Referência ISO/OSI</h2>
+                <p>Embora o <b>TCP/IP</b> seja o padrão de mercado, o <b>modelo OSI</b> é o alicerce teórico fundamental para o design de redes. Suas sete camadas realizam funções interdependentes:</p>
+                
+                <ul>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada Física:</strong></h3>
+                        Responsável pela transmissão de <b>bits brutos</b> via meios elétricos, ópticos ou eletromagnéticos.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Enlace:</strong></h3>
+                        Provê uma conexão <b>livre de erros</b> para a camada de rede, realizando o controle de acesso ao meio (<b>MAC</b>) e o enquadramento (<b>framing</b>).
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Rede:</strong></h3>
+                        Responsável pelo <b>endereçamento lógico</b> e pela determinação das <b>rotas de pacotes</b> através da infraestrutura.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Transporte:</strong></h3>
+                        Garante a <b>confiabilidade fim-a-fim</b>, o controle de fluxo e a devida <b>segmentação dos dados</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Sessão:</strong></h3>
+                        Estabelece, gerencia e finaliza o <b>diálogo</b> e a sincronização entre aplicações remotas.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Apresentação:</strong></h3>
+                        Gerencia a <b>sintaxe</b> dos dados, incluindo a tradução de formatos, <b>compressão</b> e <b>criptografia</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">Camada de Aplicação:</strong></h3>
+                        Fornece a <b>interface direta</b> para os processos de software e serviços de rede utilizados pelo usuário final.
+                    </li>
+                    <div class="foto-container">
+                    <img src="Imagens/estruturas-dark.png" alt="Execução em C" class="img-relatorio img-dark">
+                    <img src="Imagens/estruturas.png" alt="Execução em C" class="img-relatorio img-light">
+                
+                    <p class="legenda">Figura 1: Validação da Camada de Aplicação através da resolução de nomes de domínio em endereços IP.</p>
+                    </div>
+                </ul>
+            </article>
+        </section>
+
+        <section id="protocolos">
+            <article class="card report-section">
+                <h2>5. Serviços e Protocolos de Aplicação</h2>
+                <p>Os <b>protocolos de aplicação</b> traduzem as requisições do usuário em instruções processáveis pela rede:</p>
+                
+                <ul>
+                    <li>
+                        <h3><strong style="color: var(--accent);">HTTP/HTTPS:</strong></h3>
+                        Protocolo de transferência para a Web; opera sobre o modelo de <b>requisição e resposta</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">DNS:</strong></h3>
+                        Sistema essencial para a <b>resolução de nomes</b> de domínio em endereços <b>IP</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">SMTP/IMAP/POP3:</strong></h3>
+                        Ecossistema de protocolos para o envio, sincronização e descarga de <b>correio eletrônico</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">SSH:</strong></h3>
+                        Garante o <b>acesso remoto seguro</b> através de tunelamento e <b>criptografia</b>.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">NTP:</strong></h3>
+                        Algoritmo de alta precisão para a <b>sincronização temporal</b> de dispositivos em rede.
+                    </li>
+                    <li>
+                        <h3><strong style="color: var(--accent);">SIP/RTP:</strong></h3>
+                        Protocolos de sinalização e transporte para fluxos de mídia em <b>tempo real (VoIP)</b>.
+                    </li>
+                    <div class="foto-container">
+                    <img src="Imagens/http-dark.png" alt="Execução em C" class="img-relatorio img-dark">
+                    <img src="Imagens/http.png" alt="Execução em C" class="img-relatorio img-light">
+                    <p class="legenda">Figura 2: Análise da Semântica de Protocolo e inspeção de metadados em uma requisição real de rede.</p>
+                    </div>
+                </ul>
+            </article>
+        </section>
+
+        <section id="tabelas">
+            <article class="card report-section">
+                <h2>6. Tabelas de Referência Técnica</h2>
+                
+                <div class="table-container">
+                    <table class="table-abnt">
+                        <caption>Tabela 1 - Hierarquia de Camadas e Funções de Dados</caption>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Nível</th>
+                                <th style="width: 25%;">Unidade (PDU)</th>
+                                <th style="width: 50%;">Função Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>7. Aplicação</b></td>
+                                <td>Dados</td>
+                                <td>Interface direta com aplicações e usuários.</td>
+                            </tr>
+                            <tr>
+                                <td><b>6. Apresentação</b></td>
+                                <td>Dados</td>
+                                <td>Representação, criptografia e compressão.</td>
+                            </tr>
+                            <tr>
+                                <td><b>5. Sessão</b></td>
+                                <td>Dados</td>
+                                <td>Gerenciamento de diálogo e sessões.</td>
+                            </tr>
+                            <tr>
+                                <td><b>4. Transporte</b></td>
+                                <td>Segmentos</td>
+                                <td>Confiabilidade e comunicação fim-a-fim.</td>
+                            </tr>
+                            <tr>
+                                <td><b>3. Rede</b></td>
+                                <td>Pacotes</td>
+                                <td>Endereçamento lógico e roteamento.</td>
+                            </tr>
+                            <tr>
+                                <td><b>2. Enlace</b></td>
+                                <td>Quadros (Frames)</td>
+                                <td>Endereçamento físico e controle de acesso.</td>
+                            </tr>
+                            <tr>
+                                <td><b>1. Física</b></td>
+                                <td>Bits</td>
+                                <td>Sinais elétricos/ópticos e hardware.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                </div>
+
+                <div class="table-container" style="margin-top: 2rem;">
+                    <table class="table-abnt">
+                        <caption>Tabela 2 - Especificações de Serviços de Aplicação</caption>
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Protocolo</th>
+                                <th style="width: 45%;">Função Técnica Resumida</th>
+                                <th style="width: 15%;">Porta Padrão</th>
+                                <th style="width: 20%;">Camada de Transporte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>HTTP</b></td>
+                                <td>Transferência de hipertexto e recursos web.</td>
+                                <td><b>80</b></td>
+                                <td><b>TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>SMTP</b></td>
+                                <td>Transferência de mensagens entre servidores de e-mail.</td>
+                                <td><b>25</b></td>
+                                <td><b>TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>DNS</b></td>
+                                <td>Resolução de nomes de domínio para endereços IP.</td>
+                                <td><b>53</b></td>
+                                <td><b>UDP / TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>SSH</b></td>
+                                <td>Acesso e administração remota via canal criptografado.</td>
+                                <td><b>22</b></td>
+                                <td><b>TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>POP3</b></td>
+                                <td>Download de e-mails de um servidor remoto.</td>
+                                <td><b>110</b></td>
+                                <td><b>TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>IMAP</b></td>
+                                <td>Sincronização e gerenciamento de e-mails no servidor.</td>
+                                <td><b>143</b></td>
+                                <td><b>TCP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>NTP</b></td>
+                                <td>Sincronização temporal de alta precisão entre relógios.</td>
+                                <td><b>123</b></td>
+                                <td><b>UDP</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>SIP</b></td>
+                                <td>Sinalização e controle de sessões multimídia (VoIP).</td>
+                                <td><b>5060</b></td>
+                                <td><b>UDP / TCP</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                </div>
+            </article>
+        </section>
+
+        <section id="exercicios">
+            <article class="card report-section">
+                <h2>7. Resolução de Exercícios: "Faça valer a pena"</h2>
+                
+                <h3>Questão 1: Elementos-chave da Arquitetura de Protocolos</h3>
+                <div class="table-container">
+                    <table class="table-abnt">
+                        <caption>Tabela 3 - Validação das asserções sobre a arquitetura</caption>
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Asserção</th>
+                                <th style="width: 20%;">Status</th>
+                                <th style="width: 60%;">Motivo Técnico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>Sintaxe</b></td>
+                                <td style="color: #e74c3c;">Incorreta</td>
+                                <td>A sintaxe trata do formato e ordem dos dados, não da análise do conteúdo.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Semântica</b></td>
+                                <td style="color: #e74c3c;">Incorreta</td>
+                                <td>A semântica analisa o significado das seções de bits, não o formato bruto do dado.</td>
+                            </tr>
+                            <tr>
+                                <td><b>Timing</b></td>
+                                <td style="color: #2ecc71;">Correta</td>
+                                <td>Refere-se ao tempo e velocidade com que as mensagens são enviadas e recebidas.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+                </div>
+                <p style="text-indent: 0; text-align: center; margin-top: 15px;"><strong>Resposta Final: C (Somente o item III é verdadeiro).</strong></p>
+
+                <h3>Questão 2: Endereçamento Lógico</h3>
+                <p>O protocolo responsável por atribuir endereços automaticamente aos dispositivos da rede é o <b>DHCP (Dynamic Host Configuration Protocol)</b>.</p>
+                <p style="text-indent: 0;margin-top: 15px;"><strong>Resposta Final: Alternativa Correta: (C).</strong></p>
+
+                <hr style="margin: 0rem 0; border: 0; border-top: 1px solid var(--border-color); opacity: 0.3;">
+
+                <h3>Questão 3: Hierarquia de Domínios DNS</h3>
+                <p><b>Associação (V/F):</b></p>
+                <ul>
+                    <li>( <b>V</b> ) Domínios genéricos definem o segmento (ex: .com, .org).</li>
+                    <li>( <b>V</b> ) Domínios de países identificam o local do registro (ex: .br, .ar).</li>
+                    <li>( <b>F</b> ) Domínios de países não são .com, .net; estes são genéricos.</li>
+                    <li>( <b>V</b> ) O domínio reverso realiza a consulta inversa ao servidor DNS.</li>
+                    <li>( <b>F</b> ) Domínios genéricos não são .br, .us; estes são de países.</li>
+                </ul>
+                <p style="text-indent: 0; text-align: center; margin-top: 15px;"><strong>Resposta Final: D (V – V – F – V – F).</strong></p>
+            </article>
+        </section>
+
+        <section id="conclusao">
+            <article class="card report-section">
+                <h2>8. Conclusão</h2>
+                <p>
+                    A padronização estabelecida pelo <b>Modelo ISO/OSI</b> é o fator primordial para a estabilidade das comunicações globais. A segmentação em camadas isoladas promove a <b>interoperabilidade</b> entre hardware e software de diferentes fabricantes, garantindo que sistemas heterogêneos coexistam de forma eficiente.
+                </p>
+                <p>
+                    Observa-se que a eficiência da rede depende tanto da <b>robustez física</b> (camadas inferiores) quanto da correta implementação dos <b>protocolos de aplicação</b>, que sustentam a economia digital contemporânea através de serviços de alta disponibilidade e confiabilidade.
+                </p>
+            </article>
+        </section>
+        
+        <section id="referencias">
+            <h2>Referências Bibliográficas</h2>
+            <div class="referencias-content">
+                <div class="ref-item">
+                    <p>NUNES, Sergio Eduardo. <strong>Redes de computadores</strong>. Londrina: Editora e Distribuidora Educacional S.A., 2017. 200 p.</p>
+                </div>
+                    
+                    <div class="ref-item">
+                        <p>Este trabalho foi desenvolvido com o auxílio das ferramentas <b>NotebookLM</b> e <b>Google Gemini</b>. As IAs foram utilizadas como assistentes de produtividade para a estruturação do layout em <b>HTML/CSS</b> e para a validação técnica das explicações sobre o <b>Modelo ISO/OSI</b> e <b>protocolos de aplicação</b>.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Murilo Guimarães. Acadêmico de ADS.</p>
+    </footer>
+
+    <button id="back-to-top" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+    
+    <script src="../script.js"></script>
+</body>
+</html>
