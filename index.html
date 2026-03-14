@@ -53,7 +53,7 @@
     
     <main class="container">
         <section id="sobre">
-            <h2>Sobre Mim</h2>
+            <h2><i class="fas fa-pen-to-square"style="color: var(--text)"></i> Sobre Mim</h2>
             <p>
                 Estudante do 1º semestre de ADS e entusiasta de tecnologia em seus diversos níveis, do software ao hardware. 
                 Tenho experiência prática com <strong>Lua</strong> e <strong>C#</strong>, utilizando esta última para a 
@@ -67,7 +67,7 @@
         </section>
 
         <section id="formacao">
-            <h2>Formação Acadêmica</h2>
+            <h2><i class="fas fa-user-graduate"style="color: var(--text)"></i> Formação Acadêmica</h2>
             <div class="timeline">
                 <div class="item">
                     <h3>Graduação em Análise e Desenvolvimento de Sistemas</h3>
@@ -79,10 +79,10 @@
         </section>
             
         <section id="habilidades">
-            <h2>Competências & Ferramentas</h2>
+            <h2><h2><i class="fas fa-wrench"style="color: var(--text)"></i> Competências & Ferramentas</h2>
             <div class="habilidades-container">
                 <span class="skill-tag">C# (Modding)</span>
-                <span class="skill-tag">Lua</span>
+                <span class="skill-tag">Lua (Modding)</span>
                 <span class="skill-tag">Hardware & Manutenção</span>
                 <span class="skill-tag">HTML5 & CSS3</span>
                 <span class="skill-tag">JavaScript (ES6+)</span>
@@ -94,17 +94,62 @@
 
         <section id="projetos">
             <div class="projetos-header">
-                <h2>Projetos e Pesquisas</h2>
-                <div class="filter-group">
-                    <button class="filter-btn active" onclick="filterItems('todos', this)">Todos</button>
-                    <button class="filter-btn" onclick="filterItems('projeto', this)">Projetos</button>
-                    <button class="filter-btn" onclick="filterItems('pesquisa', this)">Pesquisas</button>
+                <h2><i class="fas fa-laptop-code" style="color: var(--text)"></i> Projetos e Pesquisas</h2>
+                
+                <div class="filter-controls-wrapper">
+                    <div class="filter-group">
+                        <button class="filter-btn active" onclick="filterItems('todos', this)">
+                            <i class="fas fa-list"></i> Todos
+                        </button>
+                        <button class="filter-btn" onclick="filterItems('projeto', this)">
+                            <i class="fas fa-code"></i> Projetos
+                        </button>
+                        <button class="filter-btn" onclick="filterItems('pesquisa', this)">
+                            <i class="fas fa-magnifying-glass"></i> Pesquisas
+                        </button>
+
+                        <button class="filter-btn advanced-filter-btn" id="toggle-advanced">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-filter icon-filter"></i>
+                                <i class="fas fa-chevron-up icon-arrow"></i>
+                            </div>
+                        </button>
+                    </div>
+
+            <div class="advanced-options" id="advanced-drawer">
+                <button class="mini-filter-btn reset-btn" id="clear-filters" title="Limpar todos os filtros" style="font-family: 'Inter', sans-serif;">
+                    <i class="fas fa-trash-can"></i> Limpar
+                </button>
+
+                <div class="filter-block" style="font-family: 'Inter', sans-serif;">
+                    <span><i class="fas fa-sort"></i> Ordenar por:</span>
+                    <div class="block-actions">
+                        <button class="mini-filter-btn" id="sort-date">
+                            Data <i class="fas fa-chevron-down sort-icon"></i>
+                        </button>
+                        <button class="mini-filter-btn" id="sort-name">
+                            Nome <i class="fas fa-chevron-down sort-icon"></i>
+                        </button>
+                    </div>
                 </div>
+
+                <div class="filter-block" style="font-family: 'Inter', sans-serif;">
+                    <span><i class="fas fa-tasks"></i> Status:</span>
+                    <div class="block-actions">
+                        <button class="mini-filter-btn status-btn" data-status="finalizado" style="font-family: 'Inter', sans-serif;">Finalizado</button>
+                        <button class="mini-filter-btn status-btn" data-status="em-andamento" style="font-family: 'Inter', sans-serif;">Em andamento</button>
+                        <button class="mini-filter-btn status-btn" data-status="planejado" style="font-family: 'Inter', sans-serif;">Planejamento</button>
+                    </div>
+                </div>
+            </div>
+
                 <button class="master-btn" id="btn-toggle-all" onclick="toggleAll()">Expandir Tudo</button>
             </div>
                 
             <div class="slider">
-                <div class="card projeto">
+                
+                <div class="card projeto"data-date="2026-02-13">
+                    <i><b style="color: var(--accent);">Data: 13/02/2026</b></i>
                     <h3>Portfólio Web Pessoal</h3>
                     <p>Interface responsiva desenvolvida como laboratório técnico para o curso de ADS.</p>
                     <button class="expand-btn">Detalhes <span>▼</span></button>
@@ -121,8 +166,28 @@
                         <a href="https://github.com/murilo-guimaraes/website-portfolio" target="_blank" rel="noopener noreferrer" class="view-btn">Ver Código</a>
                     </div>
                 </div>
+            
+                <div class="card projeto"data-date="2026-03-11">
+                    <i><b style="color: var(--accent);">Data: 11/03/2026</b></i>
+                    <h3>Conversor de Arquivos</h3>
+                    <p>Desenvolvimento de um conversor de arquivos utilizando a linguagem Python.</p>
+                    <button class="expand-btn">Detalhes <span>▼</span></button>
+                    <div class="extra-content">
+                        <p>Desenvolvimento focado em criar uma solução eficaz e que funcione localmente para conversão de arquivos entre diferentes formatos.</p>
+                        <div class="status-container">
+                            Status: <span class="status-badge em-andamento">Em Andamento</span>
+                    </div>
+                        <div class="tag-container">
+                            <span class="mini-tag">Python</span>
+                            <span class="mini-tag">Pillow</span>
+                            <span class="mini-tag">TKinter</span>
+                        </div>
+                        <a href="https://github.com/murilo-guimaraes/portable-converter" target="_blank" rel="noopener noreferrer" class="view-btn">Ver Projeto</a>
+                    </div>
+                </div>
 
-                        <div class="card projeto">
+                        <div class="card projeto"data-date="2026-0-0">
+                            <i><b style="color: var(--accent);">Data: ../../2026</b></i>
                             <h3>Projeto de Automação com Arduino</h3>
                             <p>Protótipo utilizando microcontroladores para automação e leitura de sensores.</p>
                             <button class="expand-btn">Detalhes <span>▼</span></button>
@@ -133,12 +198,24 @@
                     </div>
                 </div>
             </div>
+                        <div class="card projeto"data-date="2222-2-2">
+                            <i><b style="color: var(--accent);">Data: ../../....</b></i>
+                            <h3>Teste</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                            <button class="expand-btn">Detalhes <span>▼</span></button>
+                            <div class="extra-content">
+                                <p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum </p>
+                    <div class="status-container">
+                        Status: <span class="status-badge planejado">Em Planejamento</span>
+                    </div>
+                </div>
+            </div>
 
-                <div class="card pesquisa">
+                <div class="card pesquisa"data-date="2026-02-14">
+                    <i><b style="color: var(--accent);">Data: 14/02/2026</b></i>
                     <a href="Pesquisas/PDFs/artigo-redes.pdf" download class="mini-download-btn" title="Baixar PDF">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    </a>
-                    <h3>Redes de Computadores</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>
+                    <h3>Fluxos de Comunicação</h3>
                     <p>Artigo técnico sobre protocolos, transmissão de dados e a importância do fluxo de informações na rede.</p>
                     <button class="expand-btn">Detalhes <span>▼</span></button>
                     <div class="extra-content">
@@ -156,11 +233,11 @@
                     </div>
                 </div>
 
-                <div class="card pesquisa">
+                <div class="card pesquisa"data-date="2026-02-18">
+                    <i><b style="color: var(--accent);">Data: 18/02/2026</b></i>
                     <a href="Pesquisas/PDFs/relatorio-algoritmos.pdf" download class="mini-download-btn" title="Baixar PDF">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    </a>
-                    <h3>Programação Estruturada</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>
+                    <h3>Performance e RAM</h3>
                     <p>Relatório técnico focado na análise de tipos primitivos, constantes e alocação de memória em Linguagem C.</p>
                     <button class="expand-btn">Detalhes <span>▼</span></button>
                     <div class="extra-content">
@@ -177,19 +254,18 @@
                         <a href="Pesquisas/algoritmos.html" class="view-btn">Ler Relatório</a>
                     </div>
                 </div> 
-                
-                <div class="card pesquisa">
+
+                <div class="card pesquisa"data-date="2026-02-24">
+                    <i><b style="color: var(--accent);">Data: 24/02/2026</b></i>
                     <a href="Pesquisas/PDFs/relatorio-so.pdf" download class="mini-download-btn" title="Baixar PDF">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    </a>         
-                    </a>
-                    <h3>Sistemas Operacionais</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>        
+                    <h3>Arquitetura do SO</h3>
                     <p>Relatório técnico e prático sobre a estrutura do Kernel, arquiteturas de sistemas e o funcionamento de processos multitarefa.</p>
                     <button class="expand-btn">Detalhes <span>▼</span></button>
                     <div class="extra-content">
                         <p>Análise sobre a evolução dos sistemas e a gestão de recursos de hardware. O projeto detalha o papel do Kernel, as arquiteturas de projeto e as classificações de processamento.</p>
                         <div class="status-container">
-                            Status: <span class="status-badge em-andamento">Em Andamento</span>
+                            Status: <span class="status-badge finalizado">Finalizado</span>
                         </div>
                             <div class="tag-container">
                             <span class="mini-tag">Relatório Técnico</span>
@@ -198,6 +274,28 @@
                             <span class="mini-tag">Multitarefa</span>
                         </div>
                         <a href="Pesquisas/sistemas.html" class="view-btn">Ler Relatório</a>
+                    </div>
+                </div>
+
+                <div class="card pesquisa"data-date="2026-03-12">
+                    <i><b style="color: var(--accent);">Data: 12/03/2026</b></i>
+                    <a href="Pesquisas/PDFs/relatorio-redes.pdf" download class="mini-download-btn" title="Baixar PDF">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>
+                    <h3>Arquitetura de Redes e Modelo OSI</h3>
+                    <p>Relatório técnico sobre o Modelo OSI, analisando a padronização de protocolos e a organização modular das camadas de rede.</p>
+                    <button class="expand-btn">Detalhes <span>▼</span></button>
+                    <div class="extra-content">
+                        <p>Análise sobre a importância da padronização na comunicação global. O projeto detalha as sete camadas do modelo OSI e o funcionamento técnico de protocolos como DNS, TCP e HTTP.</p>
+                        <div class="status-container">
+                            Status: <span class="status-badge finalizado">Finalizado</span>
+                        </div>
+                            <div class="tag-container">
+                            <span class="mini-tag">Relatório Técnico</span>
+                            <span class="mini-tag">Padronização</span>
+                            <span class="mini-tag">Modelo ISO/OSI</span>
+                            <span class="mini-tag">Protocolos</span>
+                        </div>
+                        <a href="Pesquisas/redes2.html" class="view-btn">Ler Relatório</a>
                     </div>
                 </div>
         </section>
@@ -221,7 +319,7 @@
         <p>&copy; 2026 Murilo Guimarães. Desenvolvido com o foco em acessibilidade e interatividade.</p>
     </footer>
 
-    <button id="back-to-top" title="Voltar ao topo">↑</button>
+    <button id="back-to-top" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
 
     <script src="script.js"></script>
 </body>
