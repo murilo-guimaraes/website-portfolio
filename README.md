@@ -15,13 +15,17 @@ O projeto está publicado em:
 ---
 
 ## O que há de novo?
-### Versão v03.3.26
-Pequenos ajustes na interface
+### Versão v14.3.26
+Foco em otimização de busca e refinamento de interface.
 
-* **Nova Pesquisa**: Novo relatório trazendo funcionalidades novas. *(BETA)* 
-* **Colaboratory**: Movido para dentro do `<nav>` localizado no topo da página dos projetos, facilitando o acesso.
-* **Correção de Bugs**: Pequenos ajustes técnicos para estabilidade.
+Esta atualização tem o objetivo de tornar a navegação mais simples e organizada com ferramentas que facilitam a busca por projetos e garantem que o site continue fácil de usar mesmo quando houver muito mais conteúdo no futuro.
 
+* **Painel de Opções Avançadas**: Implementação de uma gaveta técnica com design Glassmorphism para centralizar as ferramentas de controle da interface.
+* **Lógica de Ordenação Multicritério**: Sistema que permite alternar a ordem dos projetos por Data e Nome (Crescente/Decrescente) com feedback visual dinâmico via ícones de estado.
+* **Agrupamento por Prioridade de Status**: Algoritmo que reorganiza o DOM dinamicamente para priorizar projetos Finalizados, seguidos de projetos Em Andamento e Planejados.
+* **Função de Reset Global**: Inclusão de um botão de limpeza (Lixeira) que restaura a ordem cronológica original e limpa todos os filtros ativos em um único clique.
+* **Padronização Tipográfica**: Migração de toda a interface para a família Inter, visando otimizar a legibilidade em diferentes escalas e dispositivos.
+* **Otimização de Navegação**: Realocação estratégica do Colaboratory no menu superior para melhorar o fluxo de trabalho.
 ---
 
 ## Funcionalidades e Tecnologias
@@ -32,13 +36,16 @@ Pequenos ajustes na interface
 
 ## Estrutura de Arquivos
 ```text
+├── Colaboratory/           # Documentação executada pelo Colaboratory 
 ├── Pesquisas/              # Produção Científica e Acadêmica
+│   ├── Imagens/            # Anexos
 │   ├── PDFs/               # Documentos para download
 │   └── ...                 # Relatórios técnicos (Redes, Algoritmos, etc)
-├── Projetos/               # Repositório de aplicações desenvolvidas
+├── Projetos/               # Documentação de aplicações desenvolvidas
 ├── index.html              # Core da aplicação
 ├── script.js               # Inteligência de interatividade e temas
-└── style.css               # Design system, animações e efeitos de luz
+├── style.css               # Design system, animações e efeitos de luz
+└── stylepesquisa.css       # Base de estilo das pesquisas e relatórios
 
 
 
